@@ -1,0 +1,129 @@
+<style>
+  .tuiss-section { margin-bottom: 24px; }
+  .tuiss-status { color: var(--homey-color-mono-500, #888); margin: 8px 0; min-height: 1.2em; }
+  .tuiss-list { list-style: none; margin: 0; padding: 0; }
+  .tuiss-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 0; border-bottom: 1px solid var(--homey-line-color-light, #eee);
+  }
+  .tuiss-item small { display: block; color: var(--homey-color-mono-500, #888); }
+  .tuiss-item button { flex: 0 0 auto; margin-left: 12px; }
+  .tuiss-error { color: var(--homey-color-red-500, #c0392b); min-height: 1.2em; margin: 8px 0; }
+  .tuiss-toggle { margin-top: 8px; }
+</style>
+
+<div class="tuiss-section">
+  <h2 class="homey-title" id="scan-title"></h2>
+  <p class="homey-subtitle" id="scan-hint"></p>
+  <div class="tuiss-status" id="scan-status"></div>
+  <ul class="tuiss-list" id="scan-list"></ul>
+  <label class="homey-form-checkbox tuiss-toggle">
+    <input class="homey-form-checkbox-input" type="checkbox" id="show-all" />
+    <span class="homey-form-checkbox-checkmark"></span>
+    <span class="homey-form-checkbox-text" id="show-all-text"></span>
+  </label>
+  <button class="homey-button-secondary-full" id="rescan" style="margin-top: 12px;"></button>
+</div>
+
+<div class="tuiss-section">
+  <h2 class="homey-title" id="manual-title"></h2>
+  <p class="homey-subtitle" id="manual-hint"></p>
+  <div class="homey-form-group">
+    <label class="homey-form-label" for="mac">MAC</label>
+    <input class="homey-form-input" type="text" id="mac" placeholder="AA:BB:CC:DD:EE:FF" autocomplete="off" />
+  </div>
+  <div class="homey-form-group">
+    <label class="homey-form-label" for="name" id="name-label"></label>
+    <input class="homey-form-input" type="text" id="name" autocomplete="off" />
+  </div>
+  <div class="tuiss-error" id="manual-error"></div>
+  <button class="homey-button-primary-full" id="manual-add"></button>
+</div>
+
+<script type="text/javascript">
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    var results = [];
+    var busy = false;
+
+    Homey.setTitle(Homey.__('pair.title'));
+    $('scan-title').textContent = Homey.__('pair.scan_title');
+    $('scan-hint').textContent = Homey.__('pair.scan_hint');
+    $('show-all-text').textContent = Homey.__('pair.show_all');
+    $('rescan').textContent = Homey.__('pair.rescan');
+    $('manual-title').textContent = Homey.__('pair.manual_title');
+    $('manual-hint').textContent = Homey.__('pair.manual_hint');
+    $('name-label').textContent = Homey.__('pair.name_label');
+    $('name').placeholder = Homey.__('pair.name_placeholder');
+    $('manual-add').textContent = Homey.__('pair.add');
+
+    function add(device) {
+      if (busy) return;
+      busy = true;
+      Homey.showLoadingOverlay();
+      Homey.createDevice(device)
+        .then(function () { Homey.done(); })
+        .catch(function (err) {
+          busy = false;
+          Homey.hideLoadingOverlay();
+          Homey.alert(err.message || String(err), 'error');
+        });
+    }
+
+    function render() {
+      var showAll = $('show-all').checked;
+      var list = $('scan-list');
+      list.innerHTML = '';
+      var visible = results.filter(function (r) { return showAll || r.likely; });
+      if (!visible.length) {
+        $('scan-status').textContent = Homey.__(results.length ? 'pair.none_tuiss' : 'pair.none_found');
+        return;
+      }
+      $('scan-status').textContent = '';
+      visible.forEach(function (r) {
+        var li = document.createElement('li');
+        li.className = 'tuiss-item';
+        var text = document.createElement('div');
+        var title = document.createElement('div');
+        title.textContent = r.name;
+        var sub = document.createElement('small');
+        sub.textContent = r.device.data.address + (typeof r.rssi === 'number' ? ' · ' + r.rssi + ' dBm' : '');
+        text.appendChild(title);
+        text.appendChild(sub);
+        var btn = document.createElement('button');
+        btn.className = 'homey-button-primary-shadow';
+        if (r.paired) {
+          btn.textContent = Homey.__('pair.paired');
+          btn.disabled = true;
+        } else {
+          btn.textContent = Homey.__('pair.add');
+          btn.addEventListener('click', function () { add(r.device); });
+        }
+        li.appendChild(text);
+        li.appendChild(btn);
+        list.appendChild(li);
+      });
+    }
+
+    function scan() {
+      $('scan-status').textContent = Homey.__('pair.scanning');
+      $('scan-list').innerHTML = '';
+      $('rescan').disabled = true;
+      Homey.emit('scan')
+        .then(function (found) { results = found || []; render(); })
+        .catch(function (err) { $('scan-status').textContent = err.message || String(err); })
+        .then(function () { $('rescan').disabled = false; });
+    }
+
+    $('show-all').addEventListener('change', render);
+    $('rescan').addEventListener('click', scan);
+    $('manual-add').addEventListener('click', function () {
+      $('manual-error').textContent = '';
+      Homey.emit('manual', { mac: $('mac').value, name: $('name').value })
+        .then(add)
+        .catch(function (err) { $('manual-error').textContent = err.message || String(err); });
+    });
+
+    scan();
+  })();
+</script>

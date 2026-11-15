@@ -1,0 +1,14 @@
+{
+  "name": "com.tuiss.smartview",
+  "version": "1.0.0",
+  "description": "Homey Pro app for Tuiss SmartView motorised blinds (BLE)",
+  "main": "app.js",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,26 @@
+{
+  "errors": {
+    "connect_failed": "Kon geen verbinding maken met de plissé: __error__. Is hij binnen Bluetooth-bereik van Homey en opgeladen?",
+    "not_found": "Plissé niet gevonden. Is hij binnen Bluetooth-bereik van Homey en opgeladen?",
+    "unknown_speed": "Onbekende snelheid: __speed__",
+    "speed_unsupported": "Motor __model__ ondersteunt geen snelheidsinstelling."
+  },
+  "pair": {
+    "title": "Tuiss plissé toevoegen",
+    "scan_title": "Plissés in de buurt",
+    "scan_hint": "Maak de plissé eerst wakker (druk op een knop van de afstandsbediening of motor) zodat hij zichtbaar is.",
+    "scanning": "Zoeken naar plissés…",
+    "none_found": "Geen Bluetooth-apparaten gevonden.",
+    "none_tuiss": "Geen Tuiss-plissés herkend. Vink 'Toon alle apparaten' aan of voeg hem hieronder toe via het MAC-adres.",
+    "show_all": "Toon alle Bluetooth-apparaten",
+    "rescan": "Opnieuw zoeken",
+    "manual_title": "Toevoegen via MAC-adres",
+    "manual_hint": "Het MAC-adres staat op het label van de motor of in de Tuiss SmartView-app.",
+    "name_label": "Naam (optioneel)",
+    "name_placeholder": "bijv. Plissé slaapkamer",
+    "add": "Toevoegen",
+    "paired": "Toegevoegd",
+    "invalid_mac": "Ongeldig MAC-adres. Gebruik het formaat AA:BB:CC:DD:EE:FF.",
+    "already_added": "Deze plissé is al toegevoegd."
+  }
+}

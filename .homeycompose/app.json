@@ -1,0 +1,32 @@
+{
+  "id": "com.tuiss.smartview",
+  "version": "1.0.0",
+  "compatibility": ">=8.1.0",
+  "sdk": 3,
+  "platforms": ["local"],
+  "name": {
+    "en": "Tuiss SmartView",
+    "nl": "Tuiss SmartView"
+  },
+  "description": {
+    "en": "Control your Tuiss SmartView motorised plissé and blinds over Bluetooth.",
+    "nl": "Bedien je Tuiss SmartView elektrische plissés en raamdecoratie via Bluetooth."
+  },
+  "category": ["appliances"],
+  "tags": {
+    "en": ["tuiss", "smartview", "blinds2go", "plisse", "pleated", "blind", "bluetooth", "ble"],
+    "nl": ["tuiss", "smartview", "blinds2go", "plissé", "plisse", "raamdecoratie", "gordijn", "bluetooth"]
+  },
+  "brandColor": "#2b5d7a",
+  "permissions": ["homey:wireless:ble"],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Community"
+  },
+  "support": "https://github.com/mierpost/com.tuiss/issues",
+  "source": "https://github.com/mierpost/com.tuiss"
+}
