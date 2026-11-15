@@ -1,0 +1,26 @@
+{
+  "errors": {
+    "connect_failed": "Could not connect to the blind: __error__. Is it within Bluetooth range of Homey and charged?",
+    "not_found": "Blind not found. Is it within Bluetooth range of Homey and charged?",
+    "unknown_speed": "Unknown speed: __speed__",
+    "speed_unsupported": "Motor __model__ does not support speed control."
+  },
+  "pair": {
+    "title": "Add Tuiss blind",
+    "scan_title": "Nearby blinds",
+    "scan_hint": "Wake the blind first (press a button on the remote or motor) so it is advertising.",
+    "scanning": "Searching for blinds…",
+    "none_found": "No Bluetooth devices found.",
+    "none_tuiss": "No Tuiss blinds recognised. Tick 'Show all devices' or add it by MAC address below.",
+    "show_all": "Show all Bluetooth devices",
+    "rescan": "Search again",
+    "manual_title": "Add by MAC address",
+    "manual_hint": "The MAC address is on the label of the motor or shown in the Tuiss SmartView app.",
+    "name_label": "Name (optional)",
+    "name_placeholder": "e.g. Bedroom plissé",
+    "add": "Add",
+    "paired": "Added",
+    "invalid_mac": "Invalid MAC address. Use the format AA:BB:CC:DD:EE:FF.",
+    "already_added": "This blind has already been added."
+  }
+}

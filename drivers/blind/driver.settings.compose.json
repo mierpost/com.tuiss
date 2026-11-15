@@ -1,0 +1,118 @@
+[
+  {
+    "type": "group",
+    "label": { "en": "Operation", "nl": "Bediening" },
+    "children": [
+      {
+        "id": "favorite_position",
+        "type": "number",
+        "label": { "en": "Favourite position", "nl": "Favoriete positie" },
+        "hint": {
+          "en": "Used by the 'Go to favourite position' Flow card. 0% = closed, 100% = open.",
+          "nl": "Gebruikt door de Flow-kaart 'Ga naar favoriete positie'. 0% = dicht, 100% = open."
+        },
+        "value": 50,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "units": "%"
+      },
+      {
+        "id": "speed",
+        "type": "dropdown",
+        "label": { "en": "Motor speed", "nl": "Motorsnelheid" },
+        "hint": {
+          "en": "Only supported by TS5200, TS5101, TS5001 and TS2600 motors. Saving sends the speed to the blind, so it must be in range.",
+          "nl": "Alleen ondersteund door TS5200, TS5101, TS5001 en TS2600 motoren. Bij opslaan wordt de snelheid naar de motor gestuurd, die moet dus binnen bereik zijn."
+        },
+        "value": "standard",
+        "values": [
+          { "id": "standard", "label": { "en": "Standard", "nl": "Standaard" } },
+          { "id": "comfort", "label": { "en": "Comfort", "nl": "Comfort" } },
+          { "id": "slow", "label": { "en": "Slow", "nl": "Langzaam" } }
+        ]
+      },
+      {
+        "id": "invert",
+        "type": "checkbox",
+        "label": { "en": "Invert direction", "nl": "Richting omkeren" },
+        "hint": {
+          "en": "Enable this if open and close are swapped for your blind.",
+          "nl": "Zet dit aan als open en dicht bij jouw plissé omgedraaid zijn."
+        },
+        "value": false
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": { "en": "Connection", "nl": "Verbinding" },
+    "children": [
+      {
+        "id": "connect_attempts",
+        "type": "number",
+        "label": { "en": "Connection attempts", "nl": "Verbindingspogingen" },
+        "hint": {
+          "en": "How often Homey retries connecting before a command fails.",
+          "nl": "Hoe vaak Homey opnieuw probeert te verbinden voordat een commando mislukt."
+        },
+        "value": 3,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      {
+        "id": "poll_interval",
+        "type": "number",
+        "label": { "en": "Read position every", "nl": "Positie uitlezen elke" },
+        "hint": {
+          "en": "Periodically read the position, e.g. after using the remote. Every read wakes the motor and costs battery. 0 = off.",
+          "nl": "Lees periodiek de positie uit, bijv. na gebruik van de afstandsbediening. Elke uitlezing maakt de motor wakker en kost batterij. 0 = uit."
+        },
+        "value": 0,
+        "min": 0,
+        "max": 1440,
+        "step": 1,
+        "units": { "en": "min", "nl": "min" }
+      },
+      {
+        "id": "battery_check_days",
+        "type": "number",
+        "label": { "en": "Check battery every", "nl": "Batterij controleren elke" },
+        "hint": {
+          "en": "Check the battery during a move when the last check is older than this. 0 = off.",
+          "nl": "Controleer de batterij tijdens een beweging als de laatste controle ouder is dan dit. 0 = uit."
+        },
+        "value": 7,
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "units": { "en": "days", "nl": "dagen" }
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": { "en": "Information", "nl": "Informatie" },
+    "children": [
+      {
+        "id": "address",
+        "type": "label",
+        "label": { "en": "MAC address", "nl": "MAC-adres" },
+        "value": ""
+      },
+      {
+        "id": "model",
+        "type": "label",
+        "label": { "en": "Model", "nl": "Model" },
+        "value": "-"
+      },
+      {
+        "id": "rssi",
+        "type": "label",
+        "label": { "en": "Signal strength (last connection)", "nl": "Signaalsterkte (laatste verbinding)" },
+        "value": "-"
+      }
+    ]
+  }
+]

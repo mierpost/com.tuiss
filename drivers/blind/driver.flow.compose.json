@@ -1,0 +1,49 @@
+{
+  "actions": [
+    {
+      "id": "go_to_favorite",
+      "title": { "en": "Go to favourite position", "nl": "Ga naar favoriete positie" },
+      "hint": {
+        "en": "Moves to the favourite position from the device settings.",
+        "nl": "Beweegt naar de favoriete positie uit de apparaatinstellingen."
+      }
+    },
+    {
+      "id": "set_speed",
+      "title": { "en": "Set motor speed", "nl": "Stel motorsnelheid in" },
+      "titleFormatted": { "en": "Set motor speed to [[speed]]", "nl": "Stel motorsnelheid in op [[speed]]" },
+      "hint": {
+        "en": "Only TS5200, TS5101, TS5001 and TS2600 motors.",
+        "nl": "Alleen TS5200, TS5101, TS5001 en TS2600 motoren."
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "speed",
+          "title": { "en": "Speed", "nl": "Snelheid" },
+          "values": [
+            { "id": "standard", "label": { "en": "Standard", "nl": "Standaard" } },
+            { "id": "comfort", "label": { "en": "Comfort", "nl": "Comfort" } },
+            { "id": "slow", "label": { "en": "Slow", "nl": "Langzaam" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refresh_position",
+      "title": { "en": "Read position from blind", "nl": "Lees positie uit van plissé" },
+      "hint": {
+        "en": "Connects to the blind and updates the position in Homey (e.g. after using the remote).",
+        "nl": "Verbindt met de plissé en werkt de positie in Homey bij (bijv. na gebruik van de afstandsbediening)."
+      }
+    },
+    {
+      "id": "check_battery",
+      "title": { "en": "Check battery", "nl": "Controleer batterij" },
+      "hint": {
+        "en": "Reads the battery status (good or low) from the blind.",
+        "nl": "Leest de batterijstatus (goed of laag) uit van de plissé."
+      }
+    }
+  ]
+}
